@@ -1,0 +1,156 @@
+API root: http://34.72.25.108/
+
+---
+
+Get a new game ID to use for further requests on the same game.
+
+GET /new
+
+Request Body:
+(empty)
+
+Response:
+{
+    "id": 1
+}
+
+---
+
+Update the status of a game.
+If the player with the next turn is an AI, its move will be made in the response.
+Otherwise, the response is the same as the submitted state.
+
+POST /
+
+Request Body:
+{
+    "id": 1,
+    "firstPlayer": {
+        "nickname": "Dillon",
+        "color": "RED",
+        "avatar": "a",
+        "difficulty": "HUMAN"
+    },
+    "secondPlayer": {
+        "nickname": "Computer",
+        "color": "BLACK",
+        "avatar": "b",
+        "difficulty": "EASY"
+    },
+    "moves": [
+        2
+    ],
+    "timestamp": 1605997948447,
+    "inProgress": true
+}
+
+Response:
+{
+    "id": 1,
+    "firstPlayer": {
+        "nickname": "Dillon",
+        "color": "RED",
+        "avatar": "a",
+        "difficulty": "HUMAN"
+    },
+    "secondPlayer": {
+        "nickname": "Computer",
+        "color": "BLACK",
+        "avatar": "b",
+        "difficulty": "EASY"
+    },
+    "moves": [
+        2,
+        0
+    ],
+    "timestamp": 1606595720298,
+    "inProgress": true
+}
+
+---
+
+Get the status of a game.
+
+GET /{id}
+
+Request Body:
+(empty)
+
+Response:
+{
+    "id": 1,
+    "firstPlayer": {
+        "nickname": "Dillon",
+        "color": "RED",
+        "avatar": "a",
+        "difficulty": "HUMAN"
+    },
+    "secondPlayer": {
+        "nickname": "Computer",
+        "color": "BLACK",
+        "avatar": "b",
+        "difficulty": "EASY"
+    },
+    "moves": [
+        2,
+        0
+    ],
+    "timestamp": 1606595720000,
+    "inProgress": true
+}
+
+---
+
+Get a list of completed games.
+
+GET /replays/{max_count}
+
+Request Body:
+(empty)
+
+Response:
+[
+    {
+        "id": 1,
+        "firstPlayer": {
+            "nickname": "Dillon",
+            "color": "RED",
+            "avatar": "a",
+            "difficulty": "HUMAN"
+        },
+        "secondPlayer": {
+            "nickname": "Computer",
+            "color": "BLACK",
+            "avatar": "b",
+            "difficulty": "EASY"
+        },
+        "moves": [
+            2,
+            0
+        ],
+        "timestamp": 1606595720000,
+        "inProgress": false
+    },
+    {
+        "id": 2,
+        "firstPlayer": {
+            "nickname": "Dillon",
+            "color": "RED",
+            "avatar": "a",
+            "difficulty": "HUMAN"
+        },
+        "secondPlayer": {
+            "nickname": "Computer",
+            "color": "BLACK",
+            "avatar": "b",
+            "difficulty": "EASY"
+        },
+        "moves": [
+            2,
+            0
+        ],
+        "timestamp": 1606595720000,
+        "inProgress": false
+    },
+    ...
+]
